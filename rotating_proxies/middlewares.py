@@ -110,7 +110,7 @@ class RotatingProxyMiddleware(object):
     def reanimate_proxies(self):
         n_reanimated = self.proxies.reanimate()
         if n_reanimated:
-            logger.debug("%s proxies moved from 'dead' to 'reanimated'",
+            logger.info("%s proxies moved from 'dead' to 'reanimated'",
                          n_reanimated)
 
     def engine_stopped(self):
@@ -176,7 +176,7 @@ class RotatingProxyMiddleware(object):
                                               self.max_proxies_to_try)
 
         if retries <= max_proxies_to_try:
-            logger.debug("Retrying %(request)s with another proxy "
+            logger.info("Retrying %(request)s with another proxy "
                          "(failed %(retries)d times, "
                          "max retries: %(max_proxies_to_try)d)",
                          {'request': request, 'retries': retries,
@@ -187,7 +187,7 @@ class RotatingProxyMiddleware(object):
             retryreq.dont_filter = True
             return retryreq
         else:
-            logger.debug("Gave up retrying %(request)s (failed %(retries)d "
+            logger.info("Gave up retrying %(request)s (failed %(retries)d "
                          "times with different proxies)",
                          {'request': request, 'retries': retries},
                          extra={'spider': spider})

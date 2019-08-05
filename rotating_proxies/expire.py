@@ -71,9 +71,9 @@ class Proxies(object):
             return
 
         if proxy in self.good:
-            logger.debug("GOOD proxy became DEAD: <%s>" % proxy)
+            logger.info("GOOD proxy became DEAD: <%s>" % proxy)
         else:
-            logger.debug("Proxy <%s> is DEAD" % proxy)
+            logger.info("Proxy <%s> is DEAD" % proxy)
 
         self.unchecked.discard(proxy)
         self.good.discard(proxy)
@@ -92,7 +92,7 @@ class Proxies(object):
             return
 
         if proxy not in self.good:
-            logger.debug("Proxy <%s> is GOOD" % proxy)
+            logger.info("Proxy <%s> is GOOD" % proxy)
 
         self.unchecked.discard(proxy)
         self.dead.discard(proxy)
